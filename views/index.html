@@ -1,0 +1,56 @@
+<html>
+<head>
+    <!-- https://developers.google.com/identity/sign-in/web/server-side-flow -->
+    <meta name="google-signin-client_id" content="<%= googleClientId %>">
+    <!-- BEGIN Pre-requisites -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+    </script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+    </script>
+    <!-- END Pre-requisites -->
+    <script>
+    function start() {
+        gapi.load('auth2', function() {
+            auth2 = gapi.auth2.init({
+                client_id: '<%= googleClientId %>',
+                // Scopes to request in addition to 'profile' and 'email'
+                //scope: 'additional_scope'
+            })
+        })
+    }
+    </script>
+</head>
+<body>
+    <a href="<%= twitterLoginUrl %>">Sign in with Twitter</a>
+
+    <button id="signin-btn" data-redirecturi="postmessage">Sign in with Google</button>
+    <div id="google-name"></div>
+
+    <script>
+    function signInCallback(authResult) {
+        if (authResult['code']) {
+            // Hide the sign-in button now that the user is authorized, for example:
+            $('#signin-btn').attr('style', 'display: none')
+
+            fetch('/google/auth', {
+                method: 'POST',
+                body: JSON.stringify(authResult),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(data => data.json())
+                .then(data => {
+                    $('#google-name').text(`Google display name: ${data.names[0].displayName}`)
+                })
+        } else {
+            // There was an error.
+        }
+    }
+
+    $('#signin-btn').click(function() {
+        auth2.grantOfflineAccess().then(signInCallback)
+    })
+    </script>
+</body>
+</html>
