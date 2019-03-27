@@ -5,7 +5,7 @@ Minimal OAuth example with [Koa](https://koajs.com/) and [node-oauth](https://gi
 ## How to test
 You need to create your own Twitter app [here](https://developer.twitter.com/). You can find consumer API key and consumer API secret key in *Keys and tokens* tab of your app details page.
 
-Then you need to set its callback URL according to your test environment. (e.g., http://localhost:3000/callback)
+Then you need to set its callback URL according to your test environment. (e.g., http://localhost:3000/twitter/callback)
 
 Create your own `.env` file at the project root, and then fill it with required variables.
 
