@@ -1,4 +1,4 @@
-# Koa OAuth Example (Twitter, Google)
+# Koa OAuth Example (Twitter, Google, Instagram)
 
 Minimal OAuth example with [Koa](https://koajs.com/) and [node-oauth](https://github.com/ciaranj/node-oauth).
 
@@ -14,6 +14,9 @@ TWITTER_CONSUMER_API_KEY=your-key
 TWITTER_CONSUMER_API_SECRET_KEY=your-secret-key
 GOOGLE_OAUTH2_CLIENT_ID=your-key
 GOOGLE_OAUTH2_CLIENT_SECRET=your-secret-key
+INSTAGRAM_CLIENT_ID=client_id
+INSTAGRAM_CLIENT_SECRET=client_secret
+INSTAGRAM_REDIRECT_URI=http://localhost:3000/instagram/callback
 ```
 
 You can run the server by following commands.
